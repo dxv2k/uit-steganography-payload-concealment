@@ -1,0 +1,5 @@
+pypdf
+# pdfcpu
+click
+requests
+flask # optional, for hosting 

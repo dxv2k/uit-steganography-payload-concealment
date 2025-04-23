@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  attacker:
+    build:
+      context: ..
+      dockerfile: docker/attacker.Dockerfile
+    container_name: attacker
+    working_dir: /workspace
+    volumes:
+      - ../:/workspace
+    tty: true
+    networks:
+      - pocnet
+    ports:
+      - "4444:4444" # Expose for reverse shell
+
+  target:
+    build:
+      context: ..
+      dockerfile: docker/target.Dockerfile
+    container_name: target
+    working_dir: /workspace
+    volumes:
+      - ../:/workspace
+    tty: true
+    networks:
+      - pocnet
+
+networks:
+  pocnet:
+    driver: bridge 
